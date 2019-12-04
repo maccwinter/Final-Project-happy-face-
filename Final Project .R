@@ -119,13 +119,16 @@ ggplot(data1, aes(`% Cover`, Density, color = abundance)) +
   geom_bar(aes(x=abundance, y=`% Cover`, fill = Density), position="stack", stat="identity") 
  
   
-
-ggplot(data1, aes(abundance,`% Cover` , color = Density)) +
+ddply(.data=data1, .variables = 'TransectID', function(x){
+  name=unique(x$TransectID)
+pl <- ggplot(data1, aes(abundance,`% Cover` , color = Density)) +
   geom_point() + 
   scale_color_continuous(type='viridis') + 
   geom_count() +
   theme_linedraw()
-
+ggtitle(name)
+ggsave(filename= paste0(name,'.tiff'),plot=pl, width =4, height=3, units='in',
+       dpi=600, compression = 'lzw') }, .progress ='text')
   
 
 
