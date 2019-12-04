@@ -104,8 +104,29 @@ ggplot(data = data1, aes(x = `% Cover`)) +
   geom_histogram(binwidth = 5) +
   facet_wrap(.~abundance) 
 
+names(data1)
 
 
+#ggplot with 2 geoms 
+
+ggplot(data=data1, aes(abundance, `% Cover`)) +
+  geom_bar() 
+  
+ggplot(data1, aes(`% Cover`, Density, color = abundance)) +
+  geom_point() +
+  
+  ggplot(data1) +
+  geom_bar(aes(x=abundance, y=`% Cover`, fill = Density), position="stack", stat="identity") 
+ 
+  
+
+ggplot(data1, aes(abundance,`% Cover` , color = Density)) +
+  geom_point() + 
+  scale_color_continuous(type='viridis') + 
+  geom_count() +
+  theme_linedraw()
+
+  
 
 
 
