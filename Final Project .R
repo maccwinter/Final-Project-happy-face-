@@ -118,6 +118,7 @@ ggplot(data1, aes(`% Cover`, Density, color = abundance)) +
   ggplot(data1) +
   geom_bar(aes(x=abundance, y=`% Cover`, fill = Density), position="stack", stat="identity") 
  
+#ggplot and exporting and saving figures ---- 
   
 ddply(.data=data1, .variables = 'TransectID', function(x){
   name=unique(x$TransectID)
@@ -129,6 +130,8 @@ pl <- ggplot(data1, aes(abundance,`% Cover` , color = Density)) +
 ggtitle(name)
 ggsave(filename= paste0(name,'.tiff'),plot=pl, width =4, height=3, units='in',
        dpi=600, compression = 'lzw') }, .progress ='text')
+
+#create map of sampling locations ---- 
   
 library(tidyverse)
 install.packages('ggmap')
