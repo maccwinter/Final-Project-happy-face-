@@ -48,14 +48,13 @@ head(sp.CD)
 #use if else ---- 
 
 abundance <- function(x){
-  cover <- x[2,]
+  cover <- x[,2]
   
 if(cover > 80){ abundance <- 'abundant' }
   else if(cover < 10){abundance <- 'medium'}
   else{abundance <- 'low'}
   
 }
-
 
 
 
