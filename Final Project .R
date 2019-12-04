@@ -96,6 +96,10 @@ data1 <- ddply(.data = data, .variables = 'Species', function(x){
 }, .inform=T, .progress = "text")
 head(data1)
 
+#export data set ---- 
+
+save(data1, file ="SFBVEG2013.Rdata")
+
 library(ggplot2)
 
 #create histogram ---- 
