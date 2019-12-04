@@ -64,6 +64,52 @@ library(reshape2)
 sp.AB <- melt(data=sp.CD, id.vars = c('abundance'), measure.vars = 'Species')
 sp.AB
 
+#for loop again ----- 
+realdeal <- function(x){
+  plant <- x[,13]
+  if(plant == 'Salicornia pacifica'){abundance <- 'abundant'}
+  else if(plant == 'Cuscuta salina'){abundance <- 'medium'}
+  else if(plant =='Limonium californicum'){abundance <- 'medium'}
+  else{abundance <- 'low'}
+  return(abundance)
+}
+
+data$abundance <- NA
+for(i in 1:nrow(data)){data[i,]$abundance <- realdeal(x = data[i,])}
+unique(data$abundance)
+
+#Oh dang, I could have done that with ddply. lol.  
+
+#Use ddply ----- 
+
+library(plyr)
+data1 <- ddply(.data = data, .variables = 'Species', function(x){
+  p = unique(x$Species)
+  abundancy <- function(y){
+    if(y == 'Salicornia pacifica') q <- 'abundant'
+    else if(y == 'Cuscuta salina') q <- 'medium'
+    else if(y=='Limonium californicum') q <- 'medium'
+    else q <- 'low'
+  }
+  x$abundance <- abundancy(y=p)
+  return(x)
+}, .inform=T, .progress = "text")
+head(data1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
