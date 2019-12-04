@@ -16,9 +16,11 @@ species <- unique(data$Species)
 
 #subsetting ----
 
-jc1 <- subset(x = data, data$TransectID == 'Jaumea carnosa', select = c('Canopy Height', 'Density'))
+jc1 <- subset(x = data, data$Species == 'Jaumea carnosa',
+              select = c('Canopy Height', 'Density'))
 jc1
-jc2 <- subset(x=data, data$Species == 'Jaumea carnosa', select = c('Canopy Height', '% Cover'))
+jc2 <- subset(x=data, data$Species == 'Jaumea carnosa', 
+              select = c('Canopy Height', '% Cover'))
 jc2
 
 
