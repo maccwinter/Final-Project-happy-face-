@@ -125,19 +125,31 @@ pl <- ggplot(data1, aes(abundance,`% Cover` , color = Density)) +
   geom_point() + 
   scale_color_continuous(type='viridis') + 
   geom_count() +
-  theme_linedraw()
+  theme_linedraw() +
 ggtitle(name)
 ggsave(filename= paste0(name,'.tiff'),plot=pl, width =4, height=3, units='in',
        dpi=600, compression = 'lzw') }, .progress ='text')
   
+library(tidyverse)
+install.packages('ggmap')
+install.packages("osmdata")
+library(ggmap)
+library(osmdata)
+
+names(data1)
+
+data1$Lat <- as.numeric(data1$Lat, na.rm =T)
+data1$Long <- as.numeric(data1$Long, na.rm =T)
+
+bb <- c(left=min(data1$Long - 0.007, na.rm = T), bottom = min(data1$Lat - 0.007, na.rm = T),
+        right = max(data1$Long + 0.007, na.rm = T), top = max(data1$Lat + 0.007, na.rm = T))
+bb
 
 
+map <- get_stamenmap(bbox = bb, zoom = 15, map = 'terrain-background')
 
-
-
-
-
-
+ggmap(map) +
+  geom_point(data = data1, aes(x=Long, y = Lat))
 
 
 
