@@ -96,8 +96,13 @@ data1 <- ddply(.data = data, .variables = 'Species', function(x){
 }, .inform=T, .progress = "text")
 head(data1)
 
+library(ggplot2)
 
+#create histogram ---- 
 
+ggplot(data = data1, aes(x = `% Cover`)) + 
+  geom_histogram(binwidth = 5) +
+  facet_wrap(.~abundance) 
 
 
 
