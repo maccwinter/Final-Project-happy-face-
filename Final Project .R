@@ -96,7 +96,7 @@ data1 <- ddply(.data = data, .variables = 'Species', function(x){
   x$abundance <- abundancy(y=p)
   return(x)
 }, .inform=T, .progress = "text")
-head(data1)
+names(data1)
 
 #export data set ---- 
 
