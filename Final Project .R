@@ -43,18 +43,26 @@ sp.CD[3,]
 sp.CD <- sp.CD[-3,]
 sp.CD
 
-head(sp.CD)
+#use if else and for loop ---- 
 
-#use if else ---- 
-
-abundance <- function(x){
+coverabundance <- function(x){
   cover <- x[,2]
   
 if(cover > 80){ abundance <- 'abundant' }
   else if(cover < 10){abundance <- 'medium'}
   else{abundance <- 'low'}
-  
+  return(abundance)
 }
+sp.CD$abundance <- NA
+for(i in 1:nrow(sp.CD)){sp.CD[i,]$abundance <- coverabundance(x = sp.CD[i,])}
+sp.CD
+
+#reshape data with melt ---- 
+
+library(reshape2)
+
+sp.AB <- melt(data=sp.CD, id.vars = c('abundance'), measure.vars = 'Species')
+sp.AB
 
 
 
