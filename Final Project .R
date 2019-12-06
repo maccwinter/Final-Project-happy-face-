@@ -114,15 +114,6 @@ names(data1)
 
 
 #ggplot with 2 geoms 
-
-ggplot(data=data1, aes(abundance, `% Cover`)) +
-  geom_bar() 
-  
-ggplot(data1, aes(`% Cover`, Density, color = abundance)) +
-  geom_point() +
-  
-  ggplot(data1) +
-  geom_bar(aes(x=abundance, y=`% Cover`, fill = Density), position="stack", stat="identity") 
  
 #ggplot and exporting and saving figures ---- 
   
